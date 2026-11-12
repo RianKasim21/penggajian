@@ -28,8 +28,8 @@ class data_gaji extends CI_Controller{
     {
         $where = array('kode_gaji' => $id);
         $data['title'] = "Update Data Gaji";
-        $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
-        $data['potongan'] = $this->PenggajianModel->get_data('potongan')->result();
+        $data['jabatan'] = $this->penggajianModel->get_data('data_jabatan')->result();
+        $data['potongan'] = $this->penggajianModel->get_data('potongan')->result();
         $data['gaji'] = $this->db->query("SELECT data_guru.nik, data_guru.nama_guru, data_guru.jenis_kelamin, 
         data_jabatan.nama_jabatan, data_jabatan.gaji_pokok, data_jabatan.tj_transport, data_jabatan.wali_kelas, data_jabatan.uang_makan,
         data_kehadiran.impaq_koprasi, data_kehadiran.kode_gaji, data_kehadiran.email
@@ -47,8 +47,8 @@ class data_gaji extends CI_Controller{
     {
 
         $where = array('kode_gaji' => $id);
-      $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
-      $data['potongan'] = $this->PenggajianModel->get_data('potongan_gaji')->result();
+      $data['jabatan'] = $this->penggajianModel->get_data('data_jabatan')->result();
+      $data['potongan'] = $this->penggajianModel->get_data('potongan_gaji')->result();
         $data['gaji'] = $this->db->query("SELECT data_pegawai.nuptk, data_pegawai.nama_pegawai, data_pegawai.jenis_kelamin, 
         data_jabatan.nama_jabatan, data_jabatan.honor_pendidik, data_jabatan.honor_tk, data_jabatan.tj_jabatan, data_jabatan.kepala_program, data_jabatan.eskul, data_jabatan.ph_guru,
         data_kehadiran.kode_gaji, data_kehadiran.email, data_kehadiran.alpha, data_kehadiran.sakit, data_kehadiran.izin, data_kehadiran.jumlah_jam, data_kehadiran.potongan  
@@ -190,7 +190,7 @@ class data_gaji extends CI_Controller{
             $bulantahun = $bulan.$tahun;
         }
         
-        $data['potongan'] = $this->PenggajianModel->get_data('potongan_gaji')->result();
+        $data['potongan'] = $this->penggajianModel->get_data('potongan_gaji')->result();
         $data['gaji'] = $this->db->query("SELECT data_pegawai.nuptk, data_pegawai.nama_pegawai, data_pegawai.jenis_kelamin, 
         data_jabatan.nama_jabatan, data_jabatan.honor_pendidik, data_jabatan.honor_tk, data_jabatan.tj_jabatan, data_jabatan.kepala_program, data_jabatan.eskul, data_jabatan.ph_guru,
         data_kehadiran.kode_gaji, data_kehadiran.email, data_kehadiran.alpha, data_kehadiran.sakit, data_kehadiran.izin, data_kehadiran.jumlah_jam, data_kehadiran.potongan  
@@ -218,7 +218,7 @@ class data_gaji extends CI_Controller{
             $tahun = date('Y');
             $bulantahun = $bulan.$tahun;
         }
-        $data['potongan'] = $this->PenggajianModel->get_data('potongan_gaji')->result();
+        $data['potongan'] = $this->penggajianModel->get_data('potongan_gaji')->result();
         $data['cetakgaji'] = $this->db->query("SELECT data_pegawai.nuptk, data_pegawai.nama_pegawai, data_pegawai.jenis_kelamin, 
         data_jabatan.nama_jabatan, data_jabatan.honor_pendidik, data_jabatan.honor_tk, data_jabatan.tj_jabatan, data_jabatan.kepala_program, data_jabatan.eskul, data_jabatan.ph_guru,
         data_kehadiran.kode_gaji, data_kehadiran.email, data_kehadiran.alpha, data_kehadiran.sakit, data_kehadiran.izin, data_kehadiran.jumlah_jam, data_kehadiran.potongan  

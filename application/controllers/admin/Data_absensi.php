@@ -78,7 +78,7 @@ class data_absensi extends CI_Controller{
                 }
             }
 
-            $this->PenggajianModel->insert_batch('data_kehadiran', $simpan);
+            $this->penggajianModel->insert_batch('data_kehadiran', $simpan);
             $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Data berhasil ditambahkan</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -113,9 +113,9 @@ class data_absensi extends CI_Controller{
         LEFT JOIN (SELECT nuptk, SUM(potongan) AS potongan FROM data_potongan WHERE bulan='$bulantahun' GROUP BY nuptk) potongan ON data_absensi.nuptk = potongan.nuptk
         WHERE data_absensi.bulan='$bulantahun' AND NOT EXISTS (SELECT * FROM data_kehadiran WHERE bulan='$bulantahun' AND data_absensi.nuptk = data_kehadiran.nuptk)
         GROUP BY data_absensi.nuptk ORDER BY data_absensi.nama_pegawai")->result();
-        $this->load->model('PenggajianModel');
-        $data['kode_absensi'] = $this->PenggajianModel->CreateCode1();
-        $data['kode_gaji'] = $this->PenggajianModel->KodeGaji();
+        $this->load->model('penggajianModel');
+        $data['kode_absensi'] = $this->penggajianModel->CreateCode1();
+        $data['kode_gaji'] = $this->penggajianModel->KodeGaji();
         $this->load->view('desain_admin/header',$data);
         $this->load->view('desain_admin/sidebar');
         $this->load->view('admin/formInputAbsensi',$data);

@@ -20,7 +20,7 @@ class data_jabatan extends CI_Controller{
     public function index()
     {
         $data['title'] = "Data Jabatan";
-        $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
+        $data['jabatan'] = $this->penggajianModel->get_data('data_jabatan')->result();
         $this->load->view('desain_admin/header',$data);
         $this->load->view('desain_admin/sidebar');
         $this->load->view('admin/data_jabatan',$data);
@@ -30,8 +30,8 @@ class data_jabatan extends CI_Controller{
     public function tambah_data()
     {
         $data['title'] = "Tambah Data Jabatan";
-        $this->load->model('PenggajianModel');
-        $data['urut'] = $this->PenggajianModel->CreateCode();
+        $this->load->model('penggajianModel');
+        $data['urut'] = $this->penggajianModel->CreateCode();
         $this->load->view('desain_admin/header',$data);
         $this->load->view('desain_admin/sidebar');
         $this->load->view('admin/tambah_Datajabatan',$data);
@@ -65,7 +65,7 @@ class data_jabatan extends CI_Controller{
                 'ph_guru'           => $ph_guru,
             );
 
-            $this->PenggajianModel->insert_data($data,'data_jabatan');
+            $this->penggajianModel->insert_data($data,'data_jabatan');
             $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Data berhasil ditambahkan</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -120,7 +120,7 @@ class data_jabatan extends CI_Controller{
                 'id_jabatan' => $id
             );
 
-            $this->PenggajianModel->update_data('data_jabatan',$data,$where);
+            $this->penggajianModel->update_data('data_jabatan',$data,$where);
             $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Data berhasil diupdate</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -135,7 +135,7 @@ class data_jabatan extends CI_Controller{
     public function delete_data($id)
     {
         $where = array('id_jabatan' => $id);
-        $this->PenggajianModel->delete_data($where, 'data_jabatan');
+        $this->penggajianModel->delete_data($where, 'data_jabatan');
         $this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Data berhasil dihapus</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
