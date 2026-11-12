@@ -1,6 +1,6 @@
 <?php
 
-class gantiPassword extends CI_Controller{
+class GantiPassword extends CI_Controller{
 
     public function index()
     {
