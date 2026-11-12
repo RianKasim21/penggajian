@@ -1,7 +1,7 @@
 <?php
 // Hanya "Tidak Mengajar" yang tidak boleh melihat menu Input Mengajar.
 $status2 = strtolower(trim((string) $this->session->userdata('status2')));
-$boleh_mengajar = ($status2 !== '', 'tidak mengajar');
+$boleh_mengajar = ($status2 !== 'tidak mengajar');
 ?>
 <body id="page-top">
 
