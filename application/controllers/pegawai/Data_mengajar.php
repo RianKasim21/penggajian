@@ -100,7 +100,7 @@ class data_mengajar extends CI_Controller{
                 }
             }
 
-            $this->penggajianModel->insert_batch('data_mengajar', $simpan);
+            $this->PenggajianModel->insert_batch('data_mengajar', $simpan);
             $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Data berhasil ditambahkan</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -129,7 +129,7 @@ class data_mengajar extends CI_Controller{
         INNER JOIN data_jabatan ON data_pegawai.jabatan = data_jabatan.nama_jabatan
         WHERE data_pegawai.nuptk='$nik'
         ORDER BY data_pegawai.nama_pegawai ASC")->result();
-        $this->load->model('penggajianModel');
+        $this->load->model('PenggajianModel');
         $this->load->view('desain_pegawai/header',$data);
         $this->load->view('desain_pegawai/sidebar');
         $this->load->view('pegawai/formInputMengajar',$data);

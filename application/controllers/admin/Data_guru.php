@@ -19,7 +19,7 @@ class data_guru extends CI_Controller{
     public function index() 
     {
         $data['title'] = "Data Pegawai";
-        $data['guru'] = $this->penggajianModel->get_data('data_pegawai')->result();
+        $data['guru'] = $this->PenggajianModel->get_data('data_pegawai')->result();
         $this->load->view('desain_admin/header',$data);
         $this->load->view('desain_admin/sidebar');
         $this->load->view('admin/data_guru',$data);
@@ -29,7 +29,7 @@ class data_guru extends CI_Controller{
     public function tambah_data()
     {
         $data['title'] = "Tambah Data Pegawai";
-        $data['jabatan'] = $this->penggajianModel->get_data('data_jabatan')->result();
+        $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
         $this->load->view('desain_admin/header',$data);
         $this->load->view('desain_admin/sidebar');
         $this->load->view('admin/formTambahGuru',$data);
@@ -81,7 +81,7 @@ class data_guru extends CI_Controller{
                 'status2'            => $status2,
             );
 
-            $this->penggajianModel->insert_data($data,'data_pegawai');
+            $this->PenggajianModel->insert_data($data,'data_pegawai');
             $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Data berhasil ditambahkan</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -96,7 +96,7 @@ class data_guru extends CI_Controller{
     {
         $where = array('id_guru' => $id);
         $data['title'] = "Update Data Pegawai";
-        $data['jabatan'] = $this->penggajianModel->get_data('data_jabatan')->result();
+        $data['jabatan'] = $this->PenggajianModel->get_data('data_jabatan')->result();
         $data['guru'] = $this->db->query("SELECT * FROM data_pegawai WHERE id_guru='$id'")->result();
         $this->load->view('desain_admin/header',$data);
         $this->load->view('desain_admin/sidebar');
@@ -158,7 +158,7 @@ class data_guru extends CI_Controller{
                 'id_guru' => $id
             );
 
-            $this->penggajianModel->update_data('data_pegawai',$data,$where);
+            $this->PenggajianModel->update_data('data_pegawai',$data,$where);
             $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Data berhasil diupdate</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -172,7 +172,7 @@ class data_guru extends CI_Controller{
     public function delete_data($id)
     {
         $where = array('id_guru' => $id);
-        $this->penggajianModel->delete_data($where, 'data_pegawai');
+        $this->PenggajianModel->delete_data($where, 'data_pegawai');
         $this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Data berhasil dihapus</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
