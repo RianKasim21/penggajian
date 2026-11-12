@@ -96,54 +96,60 @@
 
 	<!-- Tampilkan peta di sini -->
 
-	<form method="POST">
-		<button onclick="return confirm('Yakin Ingin Menambahkan Data?')" class="btn btn-success mb-3" type="submit" name="submit" value="submit">Simpan</button>
-		<div class="table-responsive">
+	<?php if (!empty($input_absen)) : ?>
+<form method="POST">
+	<button onclick="return confirm('Yakin Ingin Menambahkan Data?')" class="btn btn-success mb-3" type="submit" name="submit" value="submit">Simpan</button>
+	<div class="table-responsive">
 		<table id="example" class="table table-striped table-bordered">
-		<thead>
-			<tr>
-				<th class="text-center">NO</th>
-				<th class="text-center">NUPTK</th>
-				<th class="text-center">Nama Guru</th>
-				<th class="text-center">Jabatan</th>
-				<th class="text-center">Email</th>
-				<th class="text-center">Status</th>
-			</tr>
+			<thead>
+				<tr>
+					<th class="text-center">NO</th>
+					<th class="text-center">NUPTK</th>
+					<th class="text-center">Nama Guru</th>
+					<th class="text-center">Jabatan</th>
+					<th class="text-center">Email</th>
+					<th class="text-center">Status</th>
+				</tr>
 			</thead>
-
 			<tbody>
-
 			<?php $no = 1;
-            foreach ($input_absen as $a) : ?>
-			<tr>
-				<input type="hidden" name="hari[]" class="form-control" value="<?php echo $haribulantahun ?>">
-				<input type="hidden" name="bulan[]" class="form-control" value="<?php echo $bulantahun ?>">
-				<input type="hidden" name="nuptk[]" class="form-control" value="<?php echo $a->nuptk ?>">
-				<input type="hidden" name="nama_pegawai[]" class="form-control" value="<?php echo $a->nama_pegawai ?>">
-				<input type="hidden" name="jenis_kelamin[]" class="form-control"
-					value="<?php echo $a->jenis_kelamin ?>">
-				<input type="hidden" name="nama_jabatan[]" class="form-control" value="<?php echo $a->nama_jabatan ?>">
-				<input type="hidden" name="email[]" class="form-control" value="<?php echo $a->email ?>">
-				<td><?php echo $no++ ?></td>
-				<td><?php echo $a->nuptk ?></td>
-				<td><?php echo $a->nama_pegawai ?></td>
-				<td><?php echo $a->nama_jabatan ?></td>
-				<td><?php echo $a->email ?></td>
-				<td>
-					<select name="status[]" required>
-						<option disabled selected>Pilih</option>
-						<option value="izin">Izin</option>
-						<option value="sakit">Sakit</option>
-						<option value="alfa">Alfa</option>
-					</select>
-				</td>
-				<input type="hidden" name="latitude[]" class="latitude" readonly><br></td>
-				<input type="hidden" name="longitude[]" class="longitude" readonly><br></td>
-			</tr>
+			foreach ($input_absen as $a) : ?>
+				<tr>
+					<td>
+						<?php echo $no++ ?>
+						<input type="hidden" name="hari[]" value="<?php echo $haribulantahun ?>">
+						<input type="hidden" name="bulan[]" value="<?php echo $bulantahun ?>">
+						<input type="hidden" name="nuptk[]" value="<?php echo $a->nuptk ?>">
+						<input type="hidden" name="nama_pegawai[]" value="<?php echo $a->nama_pegawai ?>">
+						<input type="hidden" name="jenis_kelamin[]" value="<?php echo $a->jenis_kelamin ?>">
+						<input type="hidden" name="nama_jabatan[]" value="<?php echo $a->nama_jabatan ?>">
+						<input type="hidden" name="email[]" value="<?php echo $a->email ?>">
+						<input type="hidden" name="latitude[]" class="latitude">
+						<input type="hidden" name="longitude[]" class="longitude">
+					</td>
+					<td><?php echo $a->nuptk ?></td>
+					<td><?php echo $a->nama_pegawai ?></td>
+					<td><?php echo $a->nama_jabatan ?></td>
+					<td><?php echo $a->email ?></td>
+					<td>
+						<select name="status[]" required>
+							<option disabled selected>Pilih</option>
+							<option value="izin">Izin</option>
+							<option value="sakit">Sakit</option>
+							<option value="alfa">Alfa</option>
+						</select>
+					</td>
+				</tr>
 			<?php endforeach; ?>
 			</tbody>
-			</table>
-	</form>
+		</table>
+	</div>
+</form>
+<?php else : ?>
+	<div class="alert alert-warning">
+		Tidak ada data absen yang bisa diisi untuk tanggal ini. Kemungkinan Anda sudah absen.
+	</div>
+<?php endif; ?>
 
 </div>
 

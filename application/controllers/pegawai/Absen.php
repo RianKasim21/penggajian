@@ -66,7 +66,15 @@ class Absen extends CI_Controller{
     {
         if($this->input->post('submit', TRUE) == 'submit') {
 
-            $post = $this->input->post();
+    $post = $this->input->post();
+
+    if (empty($post['hari']) || !is_array($post['hari'])) {
+        $this->session->set_flashdata('pesan','<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Tidak ada data absen yang dikirim. Kemungkinan Anda sudah absen hari ini.</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>');
+        redirect('pegawai/absen');
+    }
 
             date_default_timezone_set('Asia/Jakarta');
 
@@ -128,8 +136,9 @@ class Absen extends CI_Controller{
                 }                
                 }
             
-            
-
+            if (empty($simpan)) {
+                redirect('pegawai/absen');
+            }
             $this->penggajianModel->insert_batch('data_absensi', $simpan);
             $this->session->set_flashdata('pesan','<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Data berhasil ditambahkan</strong>
