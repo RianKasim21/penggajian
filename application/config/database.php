@@ -1,5 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+if (!function_exists('env_val')) {
+	function env_val($key, $default = '') {
+		$v = getenv($key);
+		if ($v === false || $v === '') {
+			$v = isset($_SERVER[$key]) ? $_SERVER[$key] : (isset($_ENV[$key]) ? $_ENV[$key] : $default);
+		}
+		return $v;
+	}
+}
 
 /*
 | -------------------------------------------------------------------
@@ -75,22 +84,23 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'penggajian',
+	'hostname' => env_val('DB_HOST'),
+	'username' => env_val('DB_USER'),
+	'password' => env_val('DB_PASS'),
+	'database' => env_val('DB_NAME'),
+	'port'     => env_val('DB_PORT', 22215),
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
-	'db_debug' => (ENVIRONMENT !== 'development'),
+	'db_debug' => FALSE,
 	'cache_on' => FALSE,
 	'cachedir' => '',
 	'char_set' => 'utf8',
 	'dbcollat' => 'utf8_general_ci',
 	'swap_pre' => '',
-	'encrypt' => FALSE,
+	'encrypt' => array('ssl_verify' => FALSE),
 	'compress' => FALSE,
-	'stricton' => FALSE,
+	'stricton' => NULL,
 	'failover' => array(),
 	'save_queries' => TRUE
 );

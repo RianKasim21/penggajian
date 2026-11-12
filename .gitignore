@@ -1,5 +1,9 @@
 .DS_Store
 
+.env
+.vercel
+penggajian.sql
+
 application/cache/*
 !application/cache/index.html
 
