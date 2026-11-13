@@ -156,8 +156,9 @@
 <script>
 	// -6.94775, 107.75879
 	// -6.94827, 107.75913
-	var targetLatitude = -6.968474; // Latitude of the target location
-	var targetLongitude = 107.800122; // Longitude of the target location
+	// -6.954675001161984, 107.76993866787086
+	var targetLatitude = -6.954655; // Latitude of the target location
+	var targetLongitude = 107.769931; // Longitude of the target location
 	var maxDistance = 60; // Maximum distance in meters
 
 	function initMap() {
